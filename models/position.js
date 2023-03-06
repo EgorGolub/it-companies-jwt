@@ -6,7 +6,7 @@ Position.init(
     {
         position_id: {
             type: DataTypes.INTEGER,
-            autoIncremented: true,
+            autoIncrement: true,
             primaryKey: true,
             allowNull: false,
         },
