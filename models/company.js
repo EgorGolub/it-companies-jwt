@@ -1,7 +1,7 @@
 const db = require('../config/database');
 const { DataTypes, Model } = require('sequelize');
 
-class Company extends Model { }
+class Company extends Model {}
 Company.init({
     company_id: {
         type: DataTypes.INTEGER,
@@ -21,19 +21,17 @@ Company.init({
         allowNull: true
     },
     phone: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.STRING,
         allowNull: true
     },
     email: {
         type: DataTypes.STRING,
         allowNull: true
     }
-},
-    {
-        sequelize: db,
-        modelName: 'company',
-        timestamp: true
-    }
-)
+}, {
+    sequelize: db,
+    modelName: 'company',
+    timestamp: true
+})
 
 module.exports = Company;
