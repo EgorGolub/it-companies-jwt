@@ -1,9 +1,10 @@
+const { where } = require('sequelize')
 const data = require('../data/data.json')
 const Certificate = require('../models/certificate.js')
 const Company = require('../models/company.js')
 const Position = require('../models/position.js')
 const Worker = require('../models/worker.js')
-const workerCertificate = require('../models/workerCertificate.js')
+const Worker_Certificate = require('../models/workerCertificate.js')
 
 module.exports = async function readData(data) {
         for (let i = 0; i < data.length; i++) {
@@ -30,7 +31,6 @@ module.exports = async function readData(data) {
             })
 
             for (let i = 0; i < workers.length; i++) {
-                let certificate = workers[i].certificates;
                 await Position.findOrCreate({
                     where: {
                         name: workers[i].position,
@@ -46,18 +46,42 @@ module.exports = async function readData(data) {
                     attributes: ['position_id']
                 })
 
-                for (let i = 0; i < certificate.length; i++) {
+                let certificates = workers[i].certificates;
+                for (let j = 0; j < certificates.length; j++) {
                     await Certificate.findOrCreate({
                         where: {
-                            name: certificate[i].certificate,
-                            description: certificate[i].certificateDesc
+                            name: certificates[j].certificate,
+                            description: certificates[j].certificateDesc
                         }
                     })
-                }
 
+                    let certificate = await Certificate.findOne({
+                        where: {
+                            name: certificates[j].certificate,
+                        },
+                        attributes: ['certificate_id']
+                    })
 
-                for (let i = 0; i < workers.length; i++) {
-                    await Worker.findOrCreate({
+                    console.log(certificate.certificate_id)
+
+                    for (let i = 0; i < workers.length; i++) {
+                        await Worker.findOrCreate({
+                            where: {
+                                name: workers[i].name,
+                                dateOfBirth: workers[i].dateOfBirth,
+                                city: workers[i].city,
+                                address: workers[i].address,
+                                email: workers[i].email,
+                                phone: workers[i].phone,
+                                dateJoined: workers[i].dateJoined,
+                                companyID: company.company_id,
+                                positionID: position.position_id
+
+                            }
+                        })
+                    }
+
+                    let worker = await Worker.findOne({
                         where: {
                             name: workers[i].name,
                             dateOfBirth: workers[i].dateOfBirth,
@@ -68,11 +92,19 @@ module.exports = async function readData(data) {
                             dateJoined: workers[i].dateJoined,
                             companyID: company.company_id,
                             positionID: position.position_id
+                        },
+                        attributes: ['worker_id']
+                    })
+
+                    await Worker_Certificate.findOrCreate({
+                        where: {
+                            workerId: worker.worker_id,
+                            certificateId: certificate.certificate_id,
+                            dateOfReceiving: certificates[i].dateOfReceiving
 
                         }
                     })
                 }
-
             }
         }
     }
