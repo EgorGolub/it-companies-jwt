@@ -5,6 +5,9 @@ let Company = require('./models/company');
 let Position = require('./models/position');
 let Worker = require('./models/worker');
 let WorkerCertificate = require('./models/workerCertificate');
+let User = require('./models/user')
+let Role = require('./models/role')
+let User_Role = require('./models/user_role')
 
 //Create connection between Worker and Company 
 Worker.hasOne(Company, { foreignKey: 'company_id', sourceKey: 'companyID' });

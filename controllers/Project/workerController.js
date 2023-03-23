@@ -1,4 +1,4 @@
-const Worker = require('../models/worker')
+const Worker = require('../../models/worker')
 
 //Create and Save a new worker 
 exports.create = (req, res) => {

@@ -1,4 +1,4 @@
-const WorkerCertificate = require('../models/workerCertificate')
+const WorkerCertificate = require('../../models/workerCertificate')
 
 //Create and Save a new connection between Worker and Certificate
 exports.create = (req, res) => {

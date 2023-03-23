@@ -1,5 +1,5 @@
 module.exports = app => {
-    const workerCertificate = require('../controllers/workerCertificateController')
+    const workerCertificate = require('../../controllers/Project/workerCertificateController')
     const router = require('express').Router()
 
     //Get all connections between Workers and Certificates

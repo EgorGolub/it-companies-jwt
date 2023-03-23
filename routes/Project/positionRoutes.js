@@ -1,5 +1,5 @@
 module.exports = app => {
-    const position = require('../controllers/positionController')
+    const position = require('../../controllers/Project/positionController')
     const router = require('express').Router()
 
     //Get all Positions

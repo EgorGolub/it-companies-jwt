@@ -1,5 +1,5 @@
 module.exports = app => {
-    const certificate = require('../controllers/certificateController')
+    const certificate = require('../../controllers/Project/certificateController')
     const router = require('express').Router()
 
     //Get all s

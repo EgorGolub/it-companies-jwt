@@ -1,80 +1,74 @@
-const Company = require('../models/company')
+const Certificate = require('../../models/certificate')
 
-//Create and Save a new company
+//Create and Save a new certificate
 exports.create = (req, res) => {
     //Validate request
-    if (!req.body.name || !req.body.city || !req.body.address || !req.body.phone || !req.body.email) {
+    if (!req.body.name || !req.body.description) {
         res.status(400).send({
             message: 'Content can not be empty'
         })
         return
     }
 
-    //Create a company
-    const company = {
+    //Create a certificate
+    const certificate = {
         name: req.body.name,
-        city: req.body.city,
-        address: req.body.address,
-        phone: req.body.phone,
-        email: req.body.email
+        description: req.body.description,
     }
 
-    //Save company
-    Company.create(company)
+    //Save certificate
+    Certificate.create(certificate)
         .then(data => {
             res.send(data);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || 'Some error occurred while creating the company '
+                message: err.message || 'Some error occurred while creating the certificate'
             })
         })
 }
 
-// Get all companies
+// Get all certificates
 exports.findAll = (req, res) => {
-    Company.findAll()
+    Certificate.findAll()
         .then(data => {
             res.send(data);
         }).catch(err => {
             res.status(500).send({
-                message: err.message || 'Some error occurred while retrieving companies'
+                message: err.message || 'Some error occurred while retrieving certificates'
             })
         })
 }
 
-//Delete a company
+//Delete a certificate
 exports.delete = (req, res) => {
-    if (!req.body.company_id) {
+    if (!req.body.certificate_id) {
         res.status(400).send({
             message: 'Content can not be empty'
         })
         return
     }
 
-    Company.destroy({
+    Certificate.destroy({
         where: {
-            company_id: req.body.company_id
+            certificate_id: req.body.certificate_id
         }
     })
         .then(res.status(200).send({
-            message: `Company with id: ${req.body.company_id} was deleted successfully`
+            message: `Certificate with id: ${req.body.certificate_id} was deleted successfully`
         }))
         .catch(err => {
             res.status(500).send({
-                message: err.message || 'Some error occurred while deleting the company'
+                message: err.message || 'Some error occurred while deleting the certificate'
             })
         })
 }
 
-//Update a company
+//Update a certificate
 exports.update = (req, res) => {
-    Company.upsert({
-        company_id: req.body.company_id,
+    Certificate.upsert({
+        certificate_id: req.body.certificate_id,
         name: req.body.name,
-        city: req.body.city,
-        address: req.body.address,
-        phone: req.body.phone,
-        email: req.body.email
+        description: req.body.description
     })
         .then(data => {
             res.send(data);

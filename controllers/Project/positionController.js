@@ -1,4 +1,4 @@
-const Position = require('../models/position')
+const Position = require('../../models/position')
 
 //Create and Save a new position
 exports.create = (req, res) => {

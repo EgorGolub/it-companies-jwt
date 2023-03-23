@@ -53,7 +53,7 @@ module.exports = async function readData(data) {
                             name: certificates[j].certificate,
                             description: certificates[j].certificateDesc
                         }
-                    })
+                    });
 
                     let certificate = await Certificate.findOne({
                         where: {

@@ -1,5 +1,5 @@
 module.exports = app => {
-    const worker = require('../controllers/workerController')
+    const worker = require('../../controllers/Project/workerController')
     const router = require('express').Router()
 
     //Get all Workers

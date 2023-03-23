@@ -1,5 +1,5 @@
 module.exports = app => {
-    const company = require('../controllers/companyController')
+    const company = require('../../controllers/Project/companyController')
     const router = require('express').Router()
 
     //Get all Companies
