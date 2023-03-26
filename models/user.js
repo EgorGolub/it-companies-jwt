@@ -17,13 +17,13 @@ User.init({
         allowNull: true
     },
     password: {
-        type:DataTypes.STRING,
-        allowNull:false
+        type: DataTypes.STRING,
+        allowNull: false
     }
 }, {
     sequelize: db,
     modelName: 'user',
-    timestamp: true
+    timestamp: false
 })
 
 module.exports = User;

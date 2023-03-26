@@ -32,7 +32,7 @@ module.exports = async function readData(data) {
 
             for (let i = 0; i < workers.length; i++) {
                 await Position.findOrCreate({
-                    where: {
+                    where: { 
                         name: workers[i].position,
                         description: workers[i].positionDesc
                     }
@@ -61,7 +61,6 @@ module.exports = async function readData(data) {
                         },
                         attributes: ['certificate_id']
                     })
-
                     console.log(certificate.certificate_id)
 
                     for (let i = 0; i < workers.length; i++) {
@@ -71,7 +70,7 @@ module.exports = async function readData(data) {
                                 dateOfBirth: workers[i].dateOfBirth,
                                 city: workers[i].city,
                                 address: workers[i].address,
-                                email: workers[i].email,
+                                email: workers[i].email, 
                                 phone: workers[i].phone,
                                 dateJoined: workers[i].dateJoined,
                                 companyID: company.company_id,
@@ -99,8 +98,8 @@ module.exports = async function readData(data) {
                     await Worker_Certificate.findOrCreate({
                         where: {
                             workerId: worker.worker_id,
-                            certificateId: certificate.certificate_id,
-                            dateOfReceiving: certificates[i].dateOfReceiving
+                            certificateId: certificate.certificate_id, 
+                            dateOfReceiving: certificates[j].dateOfReceiving
 
                         }
                     })

@@ -3,7 +3,7 @@ const WorkerCertificate = require('../../models/workerCertificate')
 //Create and Save a new connection between Worker and Certificate
 exports.create = (req, res) => {
     //Validate request
-    if (!req.body.workerId || !req.body.certificateId || !req.body.dateOfReceipt) {
+    if (!req.body.workerId || !req.body.certificateId || !req.body.dateOfReceiving) {
         res.status(400).send({
             message: 'Content can not be empty'
         })
@@ -14,7 +14,7 @@ exports.create = (req, res) => {
     const workerCertificate = {
         workerId: req.body.workerId,
         certificateId: req.body.certificateId,
-        dateOfReceipt: req.body.dateOfReceipt
+        dateOfReceiving: req.body.dateOfReceiving
     }
 
     //Save connection between Worker and Certificate
@@ -30,7 +30,7 @@ exports.create = (req, res) => {
 
 // Get all connections between Worker and Certificate
 exports.findAll = (req, res) => {
-    Position.findAll()
+    WorkerCertificate.findAll()
         .then(data => {
             res.send(data);
         }).catch(err => {
@@ -42,7 +42,7 @@ exports.findAll = (req, res) => {
 
 //Delete a connection between Worker and Certificate
 exports.delete = (req, res) => {
-    if (!req.body.id) {
+    if (!req.body.workerId || !req.body.certificateId) {
         res.status(400).send({
             message: 'Content can not be empty'
         })
@@ -51,11 +51,12 @@ exports.delete = (req, res) => {
 
     WorkerCertificate.destroy({
         where: {
-            id: req.body.id
+            workerId: req.body.workerId,
+            certificateId: req.body.certificateId
         }
     })
         .then(res.status(200).send({
-            message: `Connection between Worker and Certificate with id: ${req.body.position_id} was deleted successfully`
+            message: `Connection between Worker with id: ${req.body.workerId} and Certificate with id: ${req.body.certificateId} was deleted successfully`
         }))
         .catch(err => {
             res.status(500).send({
@@ -66,10 +67,11 @@ exports.delete = (req, res) => {
 
 //Update a connection between Worker and Certificate
 exports.update = (req, res) => {
-    Position.upsert({
+    WorkerCertificate.upsert({
         id: req.body.id,
         workerId: req.body.workerId,
         certificateId: req.body.certificateId,
+        dateOfReceiving: req.body.dateOfReceiving
     })
         .then(data => {
             res.send(data);

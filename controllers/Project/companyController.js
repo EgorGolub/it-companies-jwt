@@ -34,8 +34,8 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
     Company.findAll()
         .then(data => {
-            res.send(data);
-        }).catch(err => {
+            res.send(data); 
+        }).catch(err => {b
             res.status(500).send({
                 message: err.message || 'Some error occurred while retrieving companies'
             })
@@ -44,7 +44,7 @@ exports.findAll = (req, res) => {
 
 //Delete a company
 exports.delete = (req, res) => {
-    if (!req.body.company_id) {
+    if (!req.body.company_id || !req.body.name) {
         res.status(400).send({
             message: 'Content can not be empty'
         })
@@ -53,11 +53,12 @@ exports.delete = (req, res) => {
 
     Company.destroy({
         where: {
-            company_id: req.body.company_id
+            company_id: req.body.company_id,
+            name: req.body.name
         }
     })
         .then(res.status(200).send({
-            message: `Company with id: ${req.body.company_id} was deleted successfully`
+            message: `Company with name: ${req.body.name} was deleted successfully`
         }))
         .catch(err => {
             res.status(500).send({

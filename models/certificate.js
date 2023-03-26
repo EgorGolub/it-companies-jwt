@@ -13,13 +13,13 @@ Certificate.init({
         allowNull: false,
     },
     description: {
-        type: DataTypes.STRING,
+        type: DataTypes.TEXT,
         allowNull: false,
     }
 }, {
     sequelize: db,
     modelName: 'certificate',
-    timestamps: true
+    timestamps: false
 });
 
 module.exports = Certificate

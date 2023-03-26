@@ -30,8 +30,8 @@ Company.init({
     }
 }, {
     sequelize: db,
-    modelName: 'company',
-    timestamp: true
+    timestamps: false,
+    modelName: 'company'
 })
 
 module.exports = Company;

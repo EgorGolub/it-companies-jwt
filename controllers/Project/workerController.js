@@ -3,7 +3,7 @@ const Worker = require('../../models/worker')
 //Create and Save a new worker 
 exports.create = (req, res) => {
     //Validate request
-    if (!req.body.full_name || !req.body.dateOfBirth || !req.body.city || !req.body.address || !req.body.phone || !req.body.email || !req.body.dateJoined || !req.body.companyID || !req.body.positionID) {
+    if (!req.body.name || !req.body.dateOfBirth || !req.body.city || !req.body.address || !req.body.phone || !req.body.email || !req.body.dateJoined || !req.body.companyID || !req.body.positionID) {
         res.status(400).send({
             message: 'Content can not be empty!'
         })
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
 
     //Create a worker
     const worker = {
-        full_name: req.body.full_name,
+        name: req.body.name,
         dateOfBirth: req.body.dateOfBirth,
         city: req.body.city,
         address: req.body.address,
@@ -48,7 +48,7 @@ exports.findAll = (req, res) => {
 
 //Delete a worker 
 exports.delete = (req, res) => {
-    if (!req.body.worker_id) {
+    if (!req.body.worker_id || !req.body.name || !req.body.dateOfBirth) {
         res.status(400).send({
             message: 'Content can not be empty!'
         })
@@ -57,11 +57,13 @@ exports.delete = (req, res) => {
 
     Worker.destroy({
         where: {
-            worker_id: req.body.worker_id
+            worker_id: req.body.worker_id,
+            name: req.body.name,
+            dateOfBirth: req.body.dateOfBirth
         }
     })
         .then(res.status(200).send({
-            message: `Worker with id: ${req.body.worker_id} was deleted successfully}`
+            message: `Worker with name: ${req.body.name} and date of birth: ${req.body.dateOfBirth} was deleted successfully}`
         }))
         .catch(err => {
             res.status(500).send({
@@ -74,15 +76,15 @@ exports.delete = (req, res) => {
 exports.update = (req, res) => {
     Worker.upsert({
         worker_id: req.body.worker_id,
-        full_name: req.body.full_name,
+        name: req.body.name,
         dateOfBirth: req.body.dateOfBirth,
         city: req.body.city,
         address: req.body.address,
         phone: req.body.phone,
         email: req.body.email,
         dateJoined: req.body.dateJoined,
-        company_id: req.body.companyID,
-        position_id: req.body.positionID,
+        companyID: req.body.companyID,
+        positionID: req.body.positionID,
     })
         .then(data => {
             res.send(data)

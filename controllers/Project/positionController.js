@@ -41,7 +41,7 @@ exports.findAll = (req, res) => {
 
 //Delete a position
 exports.delete = (req, res) => {
-    if (!req.body.position_id) {
+    if (!req.body.position_id || !req.body.name) {
         res.status(400).send({
             message: 'Content can not be empty'
         })
@@ -50,11 +50,12 @@ exports.delete = (req, res) => {
 
     Position.destroy({
         where: {
-            position_id: req.body.position_id
+            position_id: req.body.position_id,
+            name: req.body.name
         }
     })
         .then(res.status(200).send({
-            message: `Position with id: ${req.body.position_id} was deleted successfully`
+            message: `Position with name: ${req.body.name} was deleted successfully`
         }))
         .catch(err => {
             res.status(500).send({

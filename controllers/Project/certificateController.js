@@ -28,7 +28,7 @@ exports.create = (req, res) => {
 }
 
 // Get all certificates
-exports.findAll = (req, res) => {
+exports.findAll = (req,res) => {
     Certificate.findAll()
         .then(data => {
             res.send(data);
@@ -41,7 +41,7 @@ exports.findAll = (req, res) => {
 
 //Delete a certificate
 exports.delete = (req, res) => {
-    if (!req.body.certificate_id) {
+    if (!req.body.certificate_id || !req.body.name) {
         res.status(400).send({
             message: 'Content can not be empty'
         })
@@ -50,11 +50,12 @@ exports.delete = (req, res) => {
 
     Certificate.destroy({
         where: {
-            certificate_id: req.body.certificate_id
+            certificate_id: req.body.certificate_id,
+            name: req.body.name
         }
     })
         .then(res.status(200).send({
-            message: `Certificate with id: ${req.body.certificate_id} was deleted successfully`
+            message: `Certificate with name: ${req.body.name} was deleted successfully`
         }))
         .catch(err => {
             res.status(500).send({

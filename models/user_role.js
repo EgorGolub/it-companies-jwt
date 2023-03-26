@@ -30,7 +30,7 @@ user_role.init({
 }, {
     sequelize: db,
     modelName: 'user_role',
-    timestamps: true,
+    timestamps: false,
     indexes: [{
         unique: false,
         fields: ['userId', 'roleId']

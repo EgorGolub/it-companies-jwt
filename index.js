@@ -2,6 +2,10 @@ const express = require('express')
 const cors = require('cors')
 
 const app = express()
+
+const swaggerJsdoc = require("swagger-jsdoc")
+const swaggerUi = require("swagger-ui-express")
+
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -12,26 +16,51 @@ require('./routes/Project/positionRoutes')(app);
 require("./routes/Project/workerRoutes")(app);
 require("./routes/Project/workerCertificateRoutes")(app);
 
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-})
 
 const companies = require('./data/data.json')
 const readData = require("./parse/parse.js")
-async function fetch(){
+async function fetch() {
     const stringCompanies = JSON.stringify(companies)
     const companiesJSON = JSON.parse(stringCompanies)
     return companiesJSON
 }
-fetch().then(data =>{
+fetch().then(data => {
     readData(data)
 })
 
+// Swagger
+const options = {
+    definition: {
+        openapi: "3.0.0",
+        info: {
+            title: "Library Example Express API with Swagger",
+            version: "0.1.0",
+            description: "This is a simple CRUD API application made with Express and documented with Swagger"
+        },
+        servers: [{
+            url: "http://localhost:3000/",
+            description: 'Development server'
+        }, ],
+    },
+    apis: ["./routes/Project/*"]
+};
+
+const specs = swaggerJsdoc(options);
+app.use(
+    "/api-docs",
+    swaggerUi.serve,
+    swaggerUi.setup(specs)
+);
+
+
+const PORT = process.env.PORT || 3000
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}.`);
+});
 
 /*
-users:
-1. "username": "admin", 
+    users:
+    1. "username": "admin", 
     "email": "admin@email.com",
     "password": "123",
     "roles": ["admin", "moderator", "user"]

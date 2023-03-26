@@ -34,7 +34,7 @@ workersCertificates.init({
 }, {
     sequelize: db,
     modelName: 'workers_certificates',
-    timestamps: true,
+    timestamps: false,
     indexes: [{
         unique: false,
         fields: ['workerId', 'certificateId']

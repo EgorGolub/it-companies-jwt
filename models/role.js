@@ -12,11 +12,10 @@ Role.init({
         type: DataTypes.STRING,
         allowNull: false
     }
-},
-{
+}, {
     sequelize: db,
     modelName: 'role',
-    timestamp: true
+    timestamp: false
 })
 
 module.exports = Role;

@@ -14,39 +14,41 @@
             "dateJoined": "2014-08-30",
             "position": "CEO",
             "positionDesc": "Top position in an organization and responsible for implementing existing plans and policies, improving the company's financial strength, supporting ongoing digital business transformation and setting future strategy.",
-            "certificates": [{
-                    "certificate": "Certified Manager Certification (CM)",
-                    "certificateDesc": "Completing the Certified Supervisor Professional Certificate helps to prepare you for ICPM's Certified Supervisor Certification examination. CS certification is designed from the ground up to assess your skills in multiple key areas and prove to others that you have what it takes to be a supervisor.",
-                    "dateOfReceiving": "2015-05-30"
-                },
+            "certificates": [
                 {
                     "certificate": "Certified Management Accountant (CMA)",
                     "certificateDesc": "CMAs are experts at explaining the 'why' behind the numbers, not just the 'what'. Earning the CMA elevates your credibility and gives you a competitive edge in your career.",
                     "dateOfReceiving": "2016-10-01"
-                }
-            ]
-        }]
-    },
-    {
-        "companyName": "Total IT",
-        "companyCity": "Orlando",
-        "companyAddress": "1883 Barnes Street",
-        "companyPhone": "4072720956",
-        "companyEmail": "totalit@mail.com",
-        "workers": [{
-            "name": "Bob John",
-            "dateOfBirth": "1989-04-02",
-            "city": "Ohio",
-            "address": "1735 Big Elm",
-            "email": "bobobobo@gmail.com",
-            "phone": "8167963743",
-            "dateJoined": "2016-02-18",
-            "position": "Senior Software Developer",
-            "positionDesc": "Responsible for designing, testing, and implementing new and updated software programs.",
-            "certificates": [{
+                },
+                {
                     "certificate": "Certified Scrum Master (CSM)",
                     "certificateDesc": "A scrum master is the scrum team member tasked with fostering an effective and productive working environment and guiding others to understand scrum values, principles and practices.",
                     "dateOfReceiving": "2009-10-05"
+                }
+            ]
+            }]
+        },
+        {
+            "companyName": "Total IT",
+            "companyCity": "Orlando",
+            "companyAddress": "1883 Barnes Street",
+            "companyPhone": "4072720956",
+            "companyEmail": "totalit@mail.com",
+            "workers": [{
+                "name": "Bob John",
+                "dateOfBirth": "1989-04-02",
+                "city": "Ohio",
+                "address": "1735 Big Elm",
+                "email": "bobobobo@gmail.com",
+                "phone": "8167963743",
+                "dateJoined": "2016-02-18",
+                "position": "Senior Software Developer",
+                "positionDesc": "Responsible for designing, testing, and implementing new and updated software programs.",
+                "certificates": [
+                {
+                    "certificate": "Certified Web Professional - Web Developer",
+                    "certificateDesc": "CWP Web Developers create and maintain Web applications through programming, scripting and/or server administration.",
+                    "dateOfReceiving": "2004-01-24"
                 },
                 {
                     "certificate": "Software Engineering Master Certification (SEMC)",
@@ -72,11 +74,12 @@
             "dateJoined": "2022-06-18",
             "position": "Junior Software Developer",
             "positionDesc": "Report directly to the development manager and assist with all functions of software coding and design.",
-            "certificates": [{
-                "certificate": "Certified Web Professional - Web Developer",
-                "certificateDesc": "CWP Web Developers create and maintain Web applications through programming, scripting and/or server administration.",
-                "dateOfReceiving": "2004-01-24"
+            "certificates": [
+                {
+                "certificate": "Certified Manager Certification (CMC)",
+                "certificateDesc": "Completing the Certified Supervisor Professional Certificate helps to prepare you for ICPM is Certified Supervisor Certification examination. CS certification is designed from the ground up to assess your skills in multiple key areas and prove to others that you have what it takes to be a supervisor.",
+                "dateOfReceiving": "2015-05-30"
             }]
-        }]
+        }] 
     }
 ]
