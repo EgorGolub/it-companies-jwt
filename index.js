@@ -58,17 +58,56 @@ app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}.`);
 });
 
+const Role = require('./models/role.js');
+/* const User = require('./models/user.js');*/
+
+Role.sequelize.sync({alter: true}).then(() => {
+    initial();
+  });
+  
+  function initial() {
+    Role.create({
+      id: 1,
+      name: "user"
+    });
+
+    Role.create({
+      id: 2,
+      name: "admin"
+    });
+  }
+
+ 
+/*
+User.sequelize.sync({alter: true}).then(() => {
+    initial();
+    });
+
+    function initial() {
+    User.findOrCreate({
+        id: 1,
+        name: "user",
+        email: "user@email.com",
+        password: "321"
+    });
+
+    User.findOrCreate({
+        id: 2,
+        name: "admin",
+        email: "admin@email.com",
+        password: "123"
+    });
+}
+*/
+
 /*
     users:
-    1. "username": "admin", 
+1. "username": "admin", 
     "email": "admin@email.com",
     "password": "123",
-    "roles": ["admin", "moderator", "user"]
-2. "username": "mod", 
-    "email": "mod@email.com",
-    "password": "123123",
-    "roles": ["moderator", "user"]
-3.  "username": "user", 
+    "roles": ["admin", "user"]
+
+2.  "username": "user", 
     "email": "user@email.com",
     "password": "321",
     "roles": ["user"]

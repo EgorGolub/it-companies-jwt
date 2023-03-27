@@ -64,7 +64,7 @@ exports.delete = (req, res) => {
         })
 }
 
-//Update a company
+//Update position
 exports.update = (req, res) => {
     Position.upsert({
         position_id: req.body.position_id,

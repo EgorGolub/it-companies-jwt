@@ -29,7 +29,7 @@
 *                 phone:
 *                     type: string
 *                     description: the phone number of the worker
-*                 phone:
+*                 email:
 *                     type: string
 *                     description: the email of the worker
 *                 dateJoined:

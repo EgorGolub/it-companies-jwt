@@ -4,9 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "node parse/parse.js",
-        "start": "nodemon index.js",
-        "db_init": "node dbCreate.js"
+        "start": "nodemon index.js"
     },
     "keywords": [],
     "author": "",
