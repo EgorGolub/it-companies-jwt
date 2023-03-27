@@ -5,9 +5,20 @@ const Company = require('../models/company.js')
 const Position = require('../models/position.js')
 const Worker = require('../models/worker.js')
 const Worker_Certificate = require('../models/workerCertificate.js')
+const Role = require('../models/role.js')
 
 module.exports = async function readData(data) {
-        for (let i = 0; i < data.length; i++) {
+    for (let i = 0; i < data.length; i++) {
+            Role.findOrCreate({
+                where:{
+                    name: "USER"
+                }
+            })
+            Role.findOrCreate({
+                where:{
+                    name: "ADMIN"
+                }
+            })
             let workers = data[i].workers;
             await Company.findOrCreate({
                 where: {

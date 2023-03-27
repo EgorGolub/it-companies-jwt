@@ -22,12 +22,11 @@ const readData = require("./parse/parse.js")
 async function fetch() {
     const stringCompanies = JSON.stringify(companies)
     const companiesJSON = JSON.parse(stringCompanies)
-    return companiesJSON
+    return companiesJSON;
 }
 fetch().then(data => {
     readData(data)
 })
-
 // Swagger
 const options = {
     definition: {
@@ -50,37 +49,38 @@ app.use(
     "/api-docs",
     swaggerUi.serve,
     swaggerUi.setup(specs)
-);
-
-
-const PORT = process.env.PORT || 3000
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}.`);
-});
-
-const Role = require('./models/role.js');
-/* const User = require('./models/user.js');*/
-
-Role.sequelize.sync({alter: true}).then(() => {
-    initial();
-  });
-  
-  function initial() {
-    Role.create({
-      id: 1,
-      name: "user"
+    );
+    
+    
+    const PORT = process.env.PORT || 3000
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}.`);
     });
+    
+    // const Role = require('./models/role.js');
+    // /* const User = require('./models/user.js');*/
+    // function roleCreate(){
+    //     Role.sequelize.sync({alter: true}).then(() => {
+    //         initial();
+    //     });
+        
+    //     function initial() {
+    //         Role.create({
+    //             name: "user"
+    //         });
+            
+    //         Role.create({
+    //             name: "admin"
+    //         });
+    //     }
+    // }
+    
 
-    Role.create({
-      id: 2,
-      name: "admin"
-    });
-  }
-
- 
-/*
-User.sequelize.sync({alter: true}).then(() => {
-    initial();
+    
+    
+    /*
+    User.sequelize.sync({alter: true}).then(() => {
+        initial();
     });
 
     function initial() {
@@ -90,7 +90,7 @@ User.sequelize.sync({alter: true}).then(() => {
         email: "user@email.com",
         password: "321"
     });
-
+    
     User.findOrCreate({
         id: 2,
         name: "admin",
