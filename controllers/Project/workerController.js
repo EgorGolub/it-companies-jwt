@@ -1,4 +1,5 @@
 const Worker = require('../../models/worker')
+const { Op } = require("sequelize");
 
 //Create and Save a new worker 
 exports.create = (req, res) => {
@@ -91,6 +92,30 @@ exports.update = (req, res) => {
         }).catch(err => {
             res.status(500).send({
                 message: err.message || 'Some error occurred while updating the worker'
+            })
+        })
+}
+
+//GET Workers By CompanyID
+exports.getWorkersByCompanyID = (req, res) => {
+    if (!req.params.companyID) {
+        res.status(400).send({
+            message: 'Content cannot be empty!'
+        })
+        return
+    }
+
+    Worker.findAll({
+        where: {
+            companyID:{[Op.eq]: `${req.params.companyID}`}
+        }
+    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving Workers by CompanyID"
             })
         })
 }
