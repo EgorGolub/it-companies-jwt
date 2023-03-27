@@ -1,5 +1,8 @@
 /**
 * @swagger
+* tags:
+*   - name: certificate
+*     description: CRUD Certificate
 * components:
 *   schemas:
 *        Certificate:
@@ -32,6 +35,8 @@ module.exports = app => {
      * @swagger
      * /api/certificate/:
      *   get:
+     *     tags:
+     *       - certificate
      *     summary: Retrieve a list of Certificates.
      *     description:  Retrieve a list of Certificates.
      *     responses:
@@ -66,6 +71,8 @@ module.exports = app => {
      * @swagger
      * /api/certificate/:
      *   post:
+     *     tags:
+     *       - certificate
      *     summary: Create new Certificate
      *     requestBody:
      *       content:
@@ -92,6 +99,8 @@ module.exports = app => {
      * @swagger
      * /api/certificate/:
      *   delete:
+     *     tags:
+     *       - certificate
      *     summary: Delete Certificate
      *     requestBody:
      *       content:
@@ -118,6 +127,8 @@ module.exports = app => {
      * @swagger
      * /api/certificate/:
      *   put:
+     *     tags:
+     *       - certificate
      *     summary: Update Certificate
      *     requestBody:
      *       content:

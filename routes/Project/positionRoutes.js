@@ -1,5 +1,8 @@
 /**
 * @swagger
+* tags:
+*   - name: position
+*     description: CRUD Position
 * components:
 *   schemas:
 *        Position:
@@ -32,6 +35,8 @@ module.exports = app => {
      * @swagger
      * /api/position/:
      *   get:
+     *     tags:
+     *       - position
      *     summary: Retrieve a list of Positions.
      *     description:  Retrieve a list of Positions.
      *     responses:
@@ -66,6 +71,8 @@ module.exports = app => {
      * @swagger
      * /api/position/:
      *   post:
+     *     tags:
+     *       - position
      *     summary: Create new Position
      *     requestBody:
      *       content:
@@ -92,6 +99,8 @@ module.exports = app => {
      * @swagger
      * /api/position/:
      *   delete:
+     *     tags:
+     *       - position
      *     summary: Delete Position
      *     requestBody:
      *       content:
@@ -118,6 +127,8 @@ module.exports = app => {
      * @swagger
      * /api/position/:
      *   put:
+     *     tags:
+     *       - position
      *     summary: Update Position
      *     requestBody:
      *       content:

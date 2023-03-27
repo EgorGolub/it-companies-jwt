@@ -1,5 +1,8 @@
 /**
 * @swagger
+* tags:
+*   - name: workerCertificate
+*     description: CRUD workerCertificate
 * components:
 *   schemas:
 *        WorkerCertificate:
@@ -37,6 +40,8 @@ module.exports = app => {
      * @swagger
      * /api/workerCertificate/:
      *   get:
+     *     tags:
+     *       - workerCertificate 
      *     summary: Retrieve a list of relationship between worker and certificate.
      *     description:  Retrieve a list of relationship between worker and certificate.
      *     responses:
@@ -75,6 +80,8 @@ module.exports = app => {
      * @swagger
      * /api/workerCertificate/:
      *   post:
+     *     tags:
+     *       - workerCertificate
      *     summary: Create new Relationship between worker and certificate/
      *     requestBody:
      *       content:
@@ -104,6 +111,8 @@ module.exports = app => {
      * @swagger
      * /api/workerCertificate/:
      *   delete:
+     *     tags:
+     *       - workerCertificate
      *     summary: Delete Relationship between worker and certificate
      *     requestBody:
      *       content:
@@ -130,6 +139,8 @@ module.exports = app => {
      * @swagger
      * /api/workerCertificate/:
      *   put:
+     *     tags:
+     *       - workerCertificate
      *     summary: Update Relationship between worker and certificate
      *     requestBody:
      *       content:

@@ -2,7 +2,7 @@
 * @swagger
 * tags:
 *   - name: worker
-*     description: CRUD WORKER
+*     description: CRUD Worker
 * components:
 *   schemas:
 *        Worker:

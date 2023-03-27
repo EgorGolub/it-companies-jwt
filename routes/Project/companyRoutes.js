@@ -1,5 +1,8 @@
 /**
 * @swagger
+* tags:
+*   - name: company
+*     description: CRUD Company
 * components:
 *   schemas:
 *        Company:
@@ -42,6 +45,8 @@ module.exports = app => {
      * @swagger
      * /api/company/:
      *   get:
+     *     tags:
+     *       - company
      *     summary: Retrieve a list of Companies.
      *     description:  Retrieve a list of Companies.
      *     responses:
@@ -85,6 +90,8 @@ module.exports = app => {
      * @swagger
      * /api/company/:
      *   post:
+     *     tags:
+     *       - company
      *     summary: Create new Company
      *     requestBody:
      *       content:
@@ -120,6 +127,8 @@ module.exports = app => {
      * @swagger
      * /api/company/:
      *   delete:
+     *     tags:
+     *       - company
      *     summary: Delete Company
      *     requestBody:
      *       content:
@@ -146,6 +155,8 @@ module.exports = app => {
      * @swagger
      * /api/company/:
      *   put:
+     *     tags:
+     *       - company
      *     summary: Update Company
      *     requestBody:
      *       content:
