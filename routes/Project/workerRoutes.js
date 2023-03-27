@@ -1,5 +1,8 @@
 /**
 * @swagger
+* tags:
+*   - name: worker
+*     description: CRUD WORKER
 * components:
 *   schemas:
 *        Worker:
@@ -63,6 +66,8 @@ module.exports = app => {
      * @swagger
      * /api/worker/:
      *   get:
+     *     tags:
+     *       - worker
      *     summary: Retrieve a list of Workers.
      *     description:  Retrieve a list of Workers.
      *     responses:
@@ -117,6 +122,8 @@ module.exports = app => {
      * @swagger
      * /api/worker/:
      *   post:
+     *     tags:
+     *       - worker
      *     summary: Create new Worker
      *     requestBody:
      *       content:
@@ -164,6 +171,8 @@ module.exports = app => {
      * @swagger
      * /api/worker/:
      *   delete:
+     *     tags:
+     *       - worker
      *     summary: Delete Worker
      *     requestBody:
      *       content:
@@ -193,6 +202,8 @@ module.exports = app => {
      * @swagger
      * /api/worker/:
      *   put:
+     *     tags:
+     *       - worker
      *     summary: Update Worker
      *     requestBody:
      *       content:
