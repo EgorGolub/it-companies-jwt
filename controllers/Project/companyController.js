@@ -1,5 +1,6 @@
 const Company = require('../../models/company')
 
+
 //Create and Save a new company
 exports.create = (req, res) => {
     //Validate request
@@ -35,7 +36,7 @@ exports.findAll = (req, res) => {
     Company.findAll()
         .then(data => {
             res.send(data); 
-        }).catch(err => {b
+        }).catch(err => {
             res.status(500).send({
                 message: err.message || 'Some error occurred while retrieving companies'
             })

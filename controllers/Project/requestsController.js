@@ -5,8 +5,8 @@ const Position = require('../../models/position')
 const WorkerCertificate = require('../../models/workerCertificate')
 const { Op } = require("sequelize");
 
+
 let id = 0
-let id2 = []
 
 exports.GetWorkersByCompanyName = async (req, res) => {
     if (!req.params.name){
@@ -155,7 +155,7 @@ exports.GetWorkerByPosition = async (req, res) => {
 
 }
 
-exports.GetCertificatesByWorker = async (req, res) => {
+exports.GetCertificatesByWorker = async(req, res) => {
     if (!req.params.name){
         res.status(400).send({
             message: 'Content cannot be empty!'
@@ -163,47 +163,29 @@ exports.GetCertificatesByWorker = async (req, res) => {
         return
     }
 
-    await Worker.findAll({
-        where:{
-            name: {[Op.like]: `%${req.params.name}%`}
+    await Certificate.findAll({
+        include:[{
+            model:WorkerCertificate,
+            where:["worker_id = workerId"],
+            required: true,
+            include:[{
+                model:Certificate,
+                where:["certificateId = certificate_id"],
+                where:{
+                    name: {[Op.like]: `%${req.params.name}%`}
+                 },
+                required: true,
+            }]
         }
+    ]
     })
-        .then(res => {
-            return res.map(row => {
-                id = row.dataValues.worker_id
-                return id
-            })
-        })
-
-    WorkerCertificate.findAll({
-        where:{
-            workerId:{[Op.eq]: id},
-        }
-
+    .then(data => {
+        res.send(data);
     })
-        .then(res => {
-            return res.map(row => {
-                id2 = row.dataValues.certificateId;
-                console.log(row.dataValues);
-                return id2
-            })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving Workers by CompanyID"
         })
-        console.log(id2.length)
-    for (let i = 0; i < id2.length; i++) { 
-        Certificate.findAll({
-            where:{
-                certificate_id: id2[i]
-                
-            }
-        })
-            .then(data => {
-                res.send(data);
-            })
-            .catch(err => {
-                res.status(500).send({
-                        message: err.message || "Some error occurred while retrieving Workers by CompanyID"
-                    })
-                })
-    }
+    })
 
 }

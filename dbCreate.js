@@ -15,7 +15,16 @@ Worker.hasOne(Company, { foreignKey: 'company_id', sourceKey: 'companyID' });
 //Create connection between Worker and Position
 Worker.hasOne(Position, { foreignKey: 'position_id', sourceKey: 'positionID' });
 
-Worker.Has
+
+
+Worker.associate = function (models){
+    Worker.hasMany(models.Certificate, { through: WorkerCertificate, foreignKey: 'workerId'})
+}
+
+Certificate.associate = function (models){
+    Certificate.hasMany(models.Worker, { through: WorkerCertificate, foreignKey: 'certificateId' });
+}
+
 
 // Certificate.sync({force: true});
 // Company.sync({force: true});
