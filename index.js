@@ -15,6 +15,7 @@ require('./routes/Project/companyRoutes')(app);
 require('./routes/Project/positionRoutes')(app);
 require("./routes/Project/workerRoutes")(app);
 require("./routes/Project/workerCertificateRoutes")(app);
+require("./routes/Project/requestsRoutes")(app);
 
 
 const companies = require('./data/data.json')
@@ -57,48 +58,6 @@ app.use(
         console.log(`Server is running on port ${PORT}.`);
     });
     
-    // const Role = require('./models/role.js');
-    // /* const User = require('./models/user.js');*/
-    // function roleCreate(){
-    //     Role.sequelize.sync({alter: true}).then(() => {
-    //         initial();
-    //     });
-        
-    //     function initial() {
-    //         Role.create({
-    //             name: "user"
-    //         });
-            
-    //         Role.create({
-    //             name: "admin"
-    //         });
-    //     }
-    // }
-    
-
-    
-    
-    /*
-    User.sequelize.sync({alter: true}).then(() => {
-        initial();
-    });
-
-    function initial() {
-    User.findOrCreate({
-        id: 1,
-        name: "user",
-        email: "user@email.com",
-        password: "321"
-    });
-    
-    User.findOrCreate({
-        id: 2,
-        name: "admin",
-        email: "admin@email.com",
-        password: "123"
-    });
-}
-*/
 
 /*
     users:

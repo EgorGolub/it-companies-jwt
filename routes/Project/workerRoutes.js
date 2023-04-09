@@ -113,6 +113,7 @@ module.exports = app => {
      *                      positionID:
      *                        type: integer
      *                        example: "3"
+     * 
      */
     //Get all Workers
     router.get('/', worker.findAll)
@@ -249,30 +250,30 @@ module.exports = app => {
     //Update Worker
     router.put('/', worker.update)
 
-    /**
-     * 
-     * @swagger
-     * /api/worker/WorkerByCompanyID/{companyID}:
-     *   get:
-     *     summary: GET Workers by CompanyID
-     *     parameters:
-     *       - in: path
-     *         name: companyID
-     *         schema:
-     *           type: integer
-     *         required: true
-     *         description: Numeric ID of the company to get workers
-     *     responses:
-     *       '200':
-     *         description: OK
-     *       '400':
-     *         description: INVALID ID GIVEN
-     *       '404':
-     *         description: COMPANYID NOT FOUND
-     */
-    //Get Worker By CompanyID
-    router.get('/WorkerByCompanyID/:companyID', worker.getWorkersByCompanyID)
-
+    // /**
+    //  * 
+    //  * @swagger
+    //  * /api/worker/WorkerByCompanyID/{companyID}:
+    //  *   get:
+    //  *     summary: GET Workers by CompanyID
+    //  *     parameters:
+    //  *       - in: path
+    //  *         name: companyID
+    //  *         schema:
+    //  *           type: integer
+    //  *         required: true
+    //  *         description: Numeric ID of the company to get workers
+    //  *     responses:
+    //  *       '200':
+    //  *         description: OK
+    //  *       '400':
+    //  *         description: INVALID ID GIVEN
+    //  *       '404':
+    //  *         description: COMPANYID NOT FOUND
+    //  */
+    // //Get Worker By CompanyID
+    // router.get('/WorkerByCompanyID/:companyID', worker.getWorkersByCompanyID)
+            
     app.use('/api/worker', router)
 
 }

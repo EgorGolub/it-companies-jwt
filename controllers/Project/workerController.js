@@ -42,7 +42,7 @@ exports.findAll = (req, res) => {
             res.send(data)
         }).catch(err => {
             res.status(500).send({
-                message: err.message || 'Some error occurred while getting all workers'
+                message: err.message || 'Some error occurred while retrieving workers'
             })
         })
 }
@@ -119,3 +119,4 @@ exports.getWorkersByCompanyID = (req, res) => {
             })
         })
 }
+

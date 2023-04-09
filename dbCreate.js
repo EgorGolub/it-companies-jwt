@@ -15,6 +15,8 @@ Worker.hasOne(Company, { foreignKey: 'company_id', sourceKey: 'companyID' });
 //Create connection between Worker and Position
 Worker.hasOne(Position, { foreignKey: 'position_id', sourceKey: 'positionID' });
 
+Worker.Has
+
 // Certificate.sync({force: true});
 // Company.sync({force: true});
 // Position.sync({force: true});
