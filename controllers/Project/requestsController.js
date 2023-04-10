@@ -184,7 +184,7 @@ exports.GetCertificatesByWorker = async(req, res) => {
             }
         }
     });
-    if (worker == null) {
+    if(worker == null) {
         res.status(500).send({
             message: err.message || `Unable to find worker with name: ${req.params.name}!`
         })
@@ -194,7 +194,7 @@ exports.GetCertificatesByWorker = async(req, res) => {
             workerId: worker.worker_id
         }
     })
-    if (worker_certificates.length == 0) {
+    if(worker_certificates.length == 0) {
         res.status(500).send({
             message: err.message || "Unable to find worker certificates!"
         })
