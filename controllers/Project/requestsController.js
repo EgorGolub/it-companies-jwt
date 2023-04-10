@@ -163,29 +163,40 @@ exports.GetCertificatesByWorker = async(req, res) => {
         return
     }
 
-    await Certificate.findAll({
-        include:[{
-            model:WorkerCertificate,
-            where:["worker_id = workerId"],
-            required: true,
-            include:[{
-                model:Certificate,
-                where:["certificateId = certificate_id"],
-                where:{
-                    name: {[Op.like]: `%${req.params.name}%`}
-                 },
-                required: true,
-            }]
+    let worker = await Worker.findOne({
+        where: {
+            name: {
+                [Op.like]: `%${req.params.name}%`
+            }
         }
-    ]
-    })
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
+    });
+    if(worker == null) {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving Workers by CompanyID"
+            message: err.message || `Unable to find worker with name: ${req.params.name}!`
         })
+    }
+    let worker_certificates = await WorkerCertificate.findAll({
+        where: {
+            workerId: worker.worker_id
+        }
     })
-
+    if(worker_certificates.length == 0) {
+        res.status(500).send({
+            message: err.message || "Unable to find worker certificates!"
+        })
+    }
+    let certificates = [];
+    for (let i = 0; i < worker_certificates.length; i++) {
+        let certificate = await Certificate.findOne({
+            where: {
+                certificate_id: worker_certificates[i].certificateId
+            }
+        });
+        certificates.push(certificate);
+    }
+    const response = {
+        worker: worker.name,
+        certificates: certificates
+    }
+    res.status(200).send(response);
 }
