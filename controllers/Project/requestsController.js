@@ -8,19 +8,19 @@ const { Op } = require("sequelize");
 
 let id = 0
 
-exports.GetWorkersByCompanyName = async (req, res) => {
-    if (!req.params.name){
+exports.GetWorkersByCompanyName = async(req, res) => {
+    if (!req.params.name) {
         res.status(400).send({
             message: 'Content cannot be empty!'
         })
         return
     }
- 
+
     await Company.findAll({
-        where:{
-            name: req.params.name
-        }
-    })
+            where: {
+                name: req.params.name
+            }
+        })
         .then(res => {
             return res.map(row => {
                 id = row.dataValues.company_id
@@ -28,24 +28,26 @@ exports.GetWorkersByCompanyName = async (req, res) => {
             })
         })
     Worker.findAll({
-        where:{
-            companyID:{[Op.eq]: id},
-        }
-        // ,
-        // attributes:['name']
-    })
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while retrieving Workers by CompanyID"
+            where: {
+                companyID: {
+                    [Op.eq]: id
+                },
+            }
+            // ,
+            // attributes:['name']
         })
-    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving Workers by CompanyID"
+            })
+        })
 }
 
-exports.GetPositionsByWorker = async (req, res) => {
-    if (!req.params.name){
+exports.GetPositionsByWorker = async(req, res) => {
+    if (!req.params.name) {
         res.status(400).send({
             message: 'Content cannot be empty!'
         })
@@ -53,10 +55,12 @@ exports.GetPositionsByWorker = async (req, res) => {
     }
 
     await Worker.findAll({
-        where:{
-            name: {[Op.like]: `%${req.params.name}%`}
-        }
-    })
+            where: {
+                name: {
+                    [Op.like]: `%${req.params.name}%`
+                }
+            }
+        })
         .then(res => {
             return res.map(row => {
                 id = row.dataValues.positionID
@@ -64,9 +68,11 @@ exports.GetPositionsByWorker = async (req, res) => {
             })
         })
 
-        Position.findAll({
-            where:{
-                position_id:{[Op.eq]: id},
+    Position.findAll({
+            where: {
+                position_id: {
+                    [Op.eq]: id
+                },
             }
 
         })
@@ -81,8 +87,8 @@ exports.GetPositionsByWorker = async (req, res) => {
 
 }
 
-exports.GetCompanyByWorker = async (req, res) => {
-    if (!req.params.name){
+exports.GetCompanyByWorker = async(req, res) => {
+    if (!req.params.name) {
         res.status(400).send({
             message: 'Content cannot be empty!'
         })
@@ -90,10 +96,12 @@ exports.GetCompanyByWorker = async (req, res) => {
     }
 
     await Worker.findAll({
-        where:{
-            name: {[Op.like]: `%${req.params.name}%`}
-        }
-    })
+            where: {
+                name: {
+                    [Op.like]: `%${req.params.name}%`
+                }
+            }
+        })
         .then(res => {
             return res.map(row => {
                 id = row.dataValues.positionID
@@ -101,9 +109,11 @@ exports.GetCompanyByWorker = async (req, res) => {
             })
         })
 
-        Company.findAll({
-            where:{
-                company_id:{[Op.eq]: id},
+    Company.findAll({
+            where: {
+                company_id: {
+                    [Op.eq]: id
+                },
             }
 
         })
@@ -118,8 +128,8 @@ exports.GetCompanyByWorker = async (req, res) => {
 
 }
 
-exports.GetWorkerByPosition = async (req, res) => {
-    if (!req.params.name){
+exports.GetWorkerByPosition = async(req, res) => {
+    if (!req.params.name) {
         res.status(400).send({
             message: 'Content cannot be empty!'
         })
@@ -127,10 +137,12 @@ exports.GetWorkerByPosition = async (req, res) => {
     }
 
     await Position.findAll({
-        where:{
-            name: {[Op.like]: `%${req.params.name}%`}
-        }
-    })
+            where: {
+                name: {
+                    [Op.like]: `%${req.params.name}%`
+                }
+            }
+        })
         .then(res => {
             return res.map(row => {
                 id = row.dataValues.position_id
@@ -139,24 +151,26 @@ exports.GetWorkerByPosition = async (req, res) => {
         })
 
     Worker.findAll({
-        where:{
-            positionID:{[Op.eq]: id},
-        }
+            where: {
+                positionID: {
+                    [Op.eq]: id
+                },
+            }
 
-    })
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while retrieving Workers by CompanyID"
         })
-    })
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while retrieving Workers by CompanyID"
+            })
+        })
 
 }
 
 exports.GetCertificatesByWorker = async(req, res) => {
-    if (!req.params.name){
+    if (!req.params.name) {
         res.status(400).send({
             message: 'Content cannot be empty!'
         })
