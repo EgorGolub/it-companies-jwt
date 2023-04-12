@@ -44,6 +44,7 @@ exports.GetWorkersByCompanyName = async(req, res) => {
                 message: err.message || "Some error occurred while retrieving Workers by CompanyID"
             })
         })
+        id = 0
 }
 
 exports.GetPositionsByWorker = async(req, res) => {
@@ -85,6 +86,8 @@ exports.GetPositionsByWorker = async(req, res) => {
             })
         })
 
+        id = 0
+
 }
 
 exports.GetCompanyByWorker = async(req, res) => {
@@ -125,6 +128,7 @@ exports.GetCompanyByWorker = async(req, res) => {
                 message: err.message || "Some error occurred while retrieving Workers by CompanyID"
             })
         })
+        id = 0
 
 }
 
@@ -166,6 +170,7 @@ exports.GetWorkerByPosition = async(req, res) => {
                 message: err.message || "Some error occurred while retrieving Workers by CompanyID"
             })
         })
+        id = 0
 
 }
 
@@ -213,6 +218,8 @@ exports.GetCertificatesByWorker = async(req, res) => {
         certificates: certificates
     }
     res.status(200).send(response);
+
+    id = 0
 }
 
 exports.GetWorkersByCertificate = async(req, res) => {
@@ -259,4 +266,6 @@ exports.GetWorkersByCertificate = async(req, res) => {
         workers: workers
     }
     res.status(200).send(response);
+
+    id = 0
 }
